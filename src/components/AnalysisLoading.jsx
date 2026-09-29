@@ -48,7 +48,7 @@ export function AnalysisLoading({ previewImage }) {
       {/* Text guidance */}
       <div className="space-y-2 sm:space-y-3 px-2">
         <span className="text-[10px] sm:text-xs uppercase tracking-widest font-semibold text-[#a96739] font-sans">
-          Proses Tadabbur Mendalam
+          Proses Fakkara Mendalam
         </span>
         <h3 className="font-serif text-xl sm:text-3xl font-medium text-[#1b2e21] transition-all duration-500 min-h-[3.5rem] sm:min-h-[4rem] flex items-center justify-center">
           "{CONTEMPLATIVE_PROMPTS[promptIndex]}"

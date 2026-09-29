@@ -30,7 +30,7 @@ export function JournalModal({
           </div>
           <div>
             <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#1b2e21]">
-              Jurnal Tadabbur Alam
+              Jurnal Fakkara Alam
             </h3>
             <p className="text-[11px] sm:text-xs text-stone-500">
               {journalEntries.length} perenungan sifat-sifat Ilahi tersimpan

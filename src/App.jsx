@@ -132,7 +132,7 @@ export default function App() {
       />
 
       {/* Main Content Area - Gambar 1 Fix: Beri breathing room yang lega dari navbar */}
-      <main className="flex-1 max-w-6xl mx-auto px-3 sm:px-6 pt-6 pb-12 sm:pt-8 sm:pb-16 w-full">
+      <main className="flex-1 max-w-6xl mx-auto px-3 sm:px-6 pt-8 pb-16 sm:pt-10 sm:pb-20 w-full">
         
         {/* Informative Notification Banner if any */}
         {errorNotice && (
@@ -185,10 +185,10 @@ export default function App() {
           <div className="inline-flex items-center gap-2">
             <Compass className="w-4 h-4 text-[#32523d] shrink-0" />
             <span className="font-serif font-bold text-base tracking-wider text-[#1b2e21]">
-              TADABBUR
+              FAKKARA
             </span>
             <span className="font-arabic text-sm text-[#a96739] font-bold">
-              تَدَبُّر
+              فَكَّرَ
             </span>
           </div>
           <p className="text-xs text-stone-600 font-medium max-w-md mx-auto leading-relaxed">

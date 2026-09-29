@@ -14,10 +14,10 @@ export function Navbar({ onOpenJournal, onOpenSettings, journalCount, hasApiKey 
           <div>
             <div className="flex items-center gap-1.5 sm:gap-2">
               <span className="font-serif text-lg sm:text-2xl font-bold tracking-wide text-[#1b2e21]">
-                TADABBUR
+                FAKKARA
               </span>
               <span className="font-arabic text-xs sm:text-sm text-[#a96739] font-bold">
-                تَدَبُّر
+                فَكَّرَ
               </span>
             </div>
             <p className="text-[11px] text-[#5c5750] hidden sm:block tracking-wide">

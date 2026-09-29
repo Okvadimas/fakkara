@@ -35,8 +35,8 @@ export function ReflectionCard({
       });
 
       const link = document.createElement('a');
-      const safeTitle = (result.objectName || 'tadabbur-alam').toLowerCase().replace(/\s+/g, '-');
-      link.download = `tadabbur-${safeTitle}-${Date.now()}.png`;
+      const safeTitle = (result.objectName || 'fakkara').toLowerCase().replace(/\s+/g, '-');
+      link.download = `fakkara-${safeTitle}-${Date.now()}.png`;
       link.href = dataUrl;
       link.click();
     } catch (err) {
@@ -48,7 +48,7 @@ export function ReflectionCard({
   };
 
   const handleShare = async () => {
-    const textToShare = `🌿 Tadabbur Alam: ${result.objectName}\n\n` +
+    const textToShare = `🌿 Fakkara: ${result.objectName}\n\n` +
       `Sifat Ilahi yang terpancar:\n` +
       result.divineNames.map(n => `• ${n.latin} (${n.arabic}) - ${n.meaning}`).join('\n') +
       `\n\n"${result.voiceOfNature}"\n\n` +
@@ -57,7 +57,7 @@ export function ReflectionCard({
     if (navigator.share) {
       try {
         await navigator.share({
-          title: `Tadabbur Alam - ${result.objectName}`,
+          title: `Fakkara - ${result.objectName}`,
           text: textToShare,
           url: window.location.href
         });
@@ -81,39 +81,42 @@ export function ReflectionCard({
           className="flex items-center justify-center gap-2 py-2 px-3 text-xs sm:text-sm font-medium text-stone-600 hover:text-[#1b2e21] transition-colors rounded-xl hover:bg-[#f5f0e8] active:scale-95"
         >
           <RotateCcw className="w-4 h-4 text-stone-500" />
-          <span>Tadabbur Objek Lain</span>
+          <span>Fakkara Objek Lain</span>
         </button>
 
-        <div className="flex items-center justify-between sm:justify-end gap-2 flex-wrap">
-          {/* Save to Journal */}
-          <button
-            onClick={onSaveToJournal}
-            disabled={isSaved}
-            className={`flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3 py-2 rounded-full text-xs font-semibold transition-all border active:scale-95 ${
-              isSaved
-                ? 'bg-emerald-50 text-emerald-800 border-emerald-300'
-                : 'bg-white text-stone-700 border-[#ded2be] hover:bg-[#f5f0e8]'
-            }`}
-          >
-            {isSaved ? <BookmarkCheck className="w-4 h-4 text-emerald-600" /> : <Bookmark className="w-4 h-4 text-[#32523d]" />}
-            <span>{isSaved ? 'Tersimpan' : 'Simpan'}</span>
-          </button>
+        <div className="flex flex-col gap-2 w-full sm:w-auto">
+          {/* Baris 1: Simpan & Bagikan */}
+          <div className="flex items-center gap-2 w-full">
+            {/* Save to Journal */}
+            <button
+              onClick={onSaveToJournal}
+              disabled={isSaved}
+              className={`flex-1 flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-semibold transition-all border active:scale-95 ${
+                isSaved
+                  ? 'bg-emerald-50 text-emerald-800 border-emerald-300'
+                  : 'bg-white text-stone-700 border-[#ded2be] hover:bg-[#f5f0e8]'
+              }`}
+            >
+              {isSaved ? <BookmarkCheck className="w-4 h-4 text-emerald-600" /> : <Bookmark className="w-4 h-4 text-[#32523d]" />}
+              <span>{isSaved ? 'Tersimpan' : 'Simpan'}</span>
+            </button>
 
-          {/* Share */}
-          <button
-            onClick={handleShare}
-            className="flex items-center justify-center gap-1.5 px-3 py-2 rounded-full text-xs font-semibold bg-white text-stone-700 border border-[#ded2be] hover:bg-[#f5f0e8] transition-all active:scale-95"
-            title="Bagikan Teks Renungan"
-          >
-            {copiedText ? <Check className="w-4 h-4 text-emerald-600" /> : <Share2 className="w-4 h-4 text-stone-600" />}
-            <span>{copiedText ? 'Tersalin' : 'Bagikan'}</span>
-          </button>
+            {/* Share */}
+            <button
+              onClick={handleShare}
+              className="flex-1 flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-semibold bg-white text-stone-700 border border-[#ded2be] hover:bg-[#f5f0e8] transition-all active:scale-95"
+              title="Bagikan Teks Renungan"
+            >
+              {copiedText ? <Check className="w-4 h-4 text-emerald-600" /> : <Share2 className="w-4 h-4 text-stone-600" />}
+              <span>{copiedText ? 'Tersalin' : 'Bagikan'}</span>
+            </button>
+          </div>
 
-          {/* Download Image Card */}
+          {/* Baris 2: Unduh Kartu (PNG) - Dibuat di bawahnya simpan & bagikan */}
           <button
             onClick={handleDownloadImage}
             disabled={isExporting}
-            className="flex-1 sm:flex-initial btn-primary text-xs py-2 px-3.5 sm:px-4 shadow-sm active:scale-95"
+            className="w-full btn-primary text-xs py-2 px-3.5 sm:px-4 shadow-sm active:scale-95 flex items-center justify-center gap-1.5"
             title="Unduh Kartu Estetis PNG"
           >
             <Download className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
@@ -125,7 +128,7 @@ export function ReflectionCard({
       {/* The Printable Aesthetic Card */}
       <div
         ref={cardRef}
-        id="tadabbur-reflection-card"
+        id="fakkara-reflection-card"
         className="zen-card p-4 sm:p-10 border-2 border-[#ece4d6] bg-[#fbf9f5] relative overflow-hidden shadow-2xl space-y-6 sm:space-y-8"
         style={{
           backgroundImage: 'radial-gradient(circle at 10% 20%, rgba(87, 136, 102, 0.05) 0%, transparent 40%), radial-gradient(circle at 90% 80%, rgba(196, 124, 73, 0.05) 0%, transparent 40%)'
@@ -133,7 +136,7 @@ export function ReflectionCard({
       >
         {/* Subtle Ornamental Frame Corner */}
         <div className="flex items-center justify-between text-stone-400 text-[10px] sm:text-xs font-serif tracking-widest uppercase pb-1 border-b border-[#ece4d6]/60">
-          <span>TADABBUR • تَفَكُّر</span>
+          <span>FAKKARA • فَكَّرَ</span>
           <span>99 ASMAUL HUSNA</span>
         </div>
 
@@ -186,12 +189,14 @@ export function ReflectionCard({
               </div>
             </div>
 
-            {/* Voice of Nature: If this could speak */}
-            <div className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-[#f0f6f2] border border-[#e2ede5] relative mt-1 sm:mt-2">
-              <Quote className="w-4 h-4 sm:w-5 sm:h-5 text-[#578866]/40 absolute top-2.5 right-2.5 sm:top-3 sm:right-3" />
-              <p className="text-[10px] sm:text-[11px] uppercase tracking-widest font-semibold text-[#32523d] mb-1">
-                Suara Keheningan Alam:
-              </p>
+            {/* Voice of Nature: If this could speak - Gambar 2 Fix: flex header agar icon tidak tabrakan dengan teks */}
+            <div className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-[#f0f6f2] border border-[#e2ede5] mt-1 sm:mt-2">
+              <div className="flex items-center justify-between gap-2 mb-1.5">
+                <p className="text-[10px] sm:text-[11px] uppercase tracking-widest font-semibold text-[#32523d]">
+                  Suara Keheningan Alam:
+                </p>
+                <Quote className="w-4 h-4 sm:w-5 sm:h-5 text-[#578866]/50 shrink-0" />
+              </div>
               <p className="font-serif italic text-stone-700 text-xs sm:text-sm md:text-base leading-relaxed">
                 "{result.voiceOfNature}"
               </p>
@@ -200,14 +205,15 @@ export function ReflectionCard({
 
         </div>
 
-        {/* Section Divider */}
-        <div className="relative py-1 sm:py-2 flex items-center justify-center">
-          <div className="w-full border-t border-[#ece4d6]" />
-          <div className="absolute px-3 sm:px-4 bg-[#fbf9f5] flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs font-serif text-[#a96739] font-semibold tracking-wider sm:tracking-widest uppercase">
-            <Feather className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+        {/* Section Divider - Gambar 3 Fix: Garis terbelah di kiri & kanan sehingga tidak memotong/menabrak teks & icon */}
+        <div className="py-2 sm:py-3 flex items-center gap-3 sm:gap-4">
+          <div className="flex-1 border-t border-[#ded2be]" />
+          <div className="px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-[#f5f0e8] border border-[#ded2be] flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs font-serif text-[#a96739] font-semibold tracking-wider sm:tracking-widest uppercase shrink-0 shadow-2xs">
+            <Feather className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#a96739]" />
             <span>Cerminan Sifat-Sifat Ilahi</span>
-            <Feather className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+            <Feather className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#a96739]" />
           </div>
+          <div className="flex-1 border-t border-[#ded2be]" />
         </div>
 
         {/* Asmaul Husna Divine Names Display */}
@@ -237,10 +243,10 @@ export function ReflectionCard({
                 {divine.reflection}
               </p>
 
-              {/* Micro Dhikr Chant Reminder */}
-              <div className="pt-2 border-t border-dashed border-[#ece4d6] flex items-center justify-between text-[10px] sm:text-[11px] text-[#578866] font-medium">
-                <span>Dzikir Kontemplasi:</span>
-                <span className="font-serif italic font-bold">
+              {/* Micro Dhikr Chant Reminder - Gambar 4 Fix: Berikan padding dalam yang nyaman, rapi, dan tidak menempel garis */}
+              <div className="mt-2.5 px-3 py-2 sm:px-3.5 sm:py-2.5 rounded-xl bg-[#f0f6f2] border border-[#d2e4d8] flex items-center justify-between gap-2 text-[10px] sm:text-[11px]">
+                <span className="text-[#42694f] font-medium shrink-0">Dzikir Kontemplasi:</span>
+                <span className="font-serif italic font-bold text-[#1b2e21] text-right">
                   "Yaa Allah, Yaa {divine.latin?.replace(/^Al-|^Ar-|^As-|^An-|^Ash-|^Azh-/, '')}"
                 </span>
               </div>
@@ -248,26 +254,40 @@ export function ReflectionCard({
           ))}
         </div>
 
-        {/* Bottom Spiritual Contemplation */}
-        <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-[#253d2d] to-[#1b2e21] text-white space-y-2.5 sm:space-y-3 shadow-md border border-[#32523d]">
-          <div className="flex items-center gap-1.5 sm:gap-2 text-amber-200">
-            <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-            <h4 className="font-serif text-base sm:text-lg font-bold tracking-wide">
+        {/* Bottom Spiritual Contemplation - Gambar 5 Fix: Background dark forest green dengan kontras tinggi sehingga teks terbaca sangat jelas */}
+        <div
+          className="p-5 sm:p-7 rounded-2xl sm:rounded-3xl space-y-3 sm:space-y-4 shadow-lg border border-[#385c43] text-white relative overflow-hidden"
+          style={{
+            background: 'linear-gradient(135deg, #1e3525 0%, #132217 100%)',
+            color: '#ffffff'
+          }}
+        >
+          {/* Subtle decorative glow */}
+          <div
+            className="absolute -top-12 -right-12 w-36 h-36 rounded-full pointer-events-none opacity-20"
+            style={{ background: 'radial-gradient(circle, #d4a737 0%, transparent 70%)' }}
+          />
+
+          <div className="flex items-center gap-2 relative z-10">
+            <Sparkles className="w-4 h-4 text-[#fde68a] shrink-0" />
+            <h4 className="font-serif text-base sm:text-lg font-bold tracking-wide text-[#fde68a]">
               Mutiara Tadabbur
             </h4>
           </div>
-          <p className="text-xs sm:text-sm text-stone-200 leading-relaxed font-sans font-light">
+
+          <p className="text-xs sm:text-sm text-[#e8f0eb] leading-relaxed font-sans font-normal relative z-10">
             {result.contemplation}
           </p>
-          <div className="pt-2 border-t border-white/10 flex items-center justify-between text-[10px] sm:text-[11px] text-stone-400">
-            <span>"Segala sesuatu di alam ada bersama sifat-sifat Allah."</span>
-            <span className="font-arabic text-amber-300 text-sm sm:text-base">سُبْحَانَ اللَّهِ</span>
+
+          <div className="pt-2.5 border-t border-white/15 flex items-center justify-between text-[11px] sm:text-xs text-[#b8d1bf] relative z-10">
+            <span className="italic">"Segala sesuatu di alam ada bersama sifat-sifat Allah."</span>
+            <span className="font-arabic text-[#fde68a] font-bold text-sm sm:text-base">سُبْحَانَ اللَّهِ</span>
           </div>
         </div>
 
         {/* Card Footer Branding */}
         <div className="pt-1 flex items-center justify-between text-[10px] sm:text-[11px] text-stone-400">
-          <span>Tadabbur Alam • 99 Asmaul Husna</span>
+          <span>Fakkara • 99 Asmaul Husna</span>
           <span>remember.local</span>
         </div>
 
